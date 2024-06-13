@@ -11,6 +11,17 @@ When("the page loads completely") do
   page.has_css?('body') # Ensuring the page loads
 end
 
+When("I exit the ad") do
+    page.execute_script("document.querySelector('.klaviyo-close-form').click();")
+  end  
+
+And("I click {string}") do |link_text|
+    within('#header') do
+    click_link link_text
+  end
+end
+
 Then("I take a screenshot and save it as {string}") do |filename|
   page.save_screenshot(filename)
 end
+
