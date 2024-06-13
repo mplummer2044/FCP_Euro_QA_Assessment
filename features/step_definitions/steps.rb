@@ -1,8 +1,6 @@
 require 'capybara/cucumber'
 require 'selenium-webdriver'
 
-Capybara.default_driver = :selenium_chrome_headless
-
 Given("I navigate to {string}") do |url|
   visit url
 end
@@ -15,10 +13,15 @@ When("I exit the ad") do
     page.execute_script("document.querySelector('.klaviyo-close-form').click();")
   end  
 
-And("I click {string}") do |link_text|
-    within('#header') do
-    click_link link_text
-  end
+And("I click {string}") do |button|
+  within('#body')  
+  click_button button
+end
+
+And("I click {string}") do ||
+  within('#header') do
+  click_link link_text
+end
 end
 
 Then("I take a screenshot and save it as {string}") do |filename|
